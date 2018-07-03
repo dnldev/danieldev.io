@@ -12,7 +12,7 @@ const styles = () => ({
   root: {},
 });
 
-class AppContent extends Component {
+class Home extends Component {
   render() {
     const { classes } = this.props;
 
@@ -28,8 +28,8 @@ class AppContent extends Component {
   }
 }
 
-AppContent.propTypes = {
+Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AppContent);
+export default withStyles(styles)(Home);
