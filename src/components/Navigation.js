@@ -72,13 +72,17 @@ class Navigation extends Component {
       return 'Home';
     } else {
       const pathName = this.props.location.pathname.replace('/', '');
-      return pathName.charAt(0).toUpperCase() + pathName.slice(1);
+      return this.titleCase(pathName);
     }
   };
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
+
+  titleCase(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   render() {
     const { classes } = this.props;
