@@ -13,16 +13,14 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-import CodeIcon from '@material-ui/icons/Code';
 import MenuIcon from '@material-ui/icons/Menu';
 
 // import strings from '../localization/game-locale';
+
+import navigationLinks from './navigationLinks';
 
 const drawerWidth = 240;
 
@@ -108,14 +106,7 @@ class Navigation extends Component {
           </Grid>
         </Grid>
         <Divider />
-        <List>
-          <ListItem button component={Link} to="/projects">
-            <ListItemIcon>
-              <CodeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Projects" />
-          </ListItem>
-        </List>
+        <List>{navigationLinks}</List>
       </div>
     );
 
@@ -131,6 +122,7 @@ class Navigation extends Component {
             >
               <MenuIcon />
             </IconButton>
+
             <Typography variant="title" color="inherit" noWrap>
               {this.getParsedLocation()}
             </Typography>
