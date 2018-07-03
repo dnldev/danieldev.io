@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core';
 
+import { BrowserRouter } from 'react-router-dom';
+
 import AppContent from './components/AppContent';
 
 const theme = createMuiTheme({
@@ -26,7 +28,9 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <AppContent />
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
       </MuiThemeProvider>
     );
   }
