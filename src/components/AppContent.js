@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './Home';
+import Projects from './Projects';
 
 // import strings from '../localization/game-locale';
 
@@ -14,7 +15,7 @@ class AppContent extends Component {
       <Navigation>
         <Switch>
           <Route exact path="/" component={Home} />
-          {/* <Route path="/projects" component={Projects} /> */}
+          <Route path="/projects" component={Projects} />
         </Switch>
       </Navigation>
     );
