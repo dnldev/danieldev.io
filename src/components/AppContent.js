@@ -2,21 +2,30 @@ import React, { Component } from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 
-import Home from './Home';
-import Projects from './Projects';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+
+import Home from './pages/Home';
+import Projects from './pages/Projects';
 
 // import strings from '../localization/game-locale';
 
 import Navigation from './Navigation';
 
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+});
+
 class AppContent extends Component {
   render() {
     return (
       <Navigation>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/projects" component={Projects} />
-        </Switch>
+        <ApolloProvider client={client}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/projects" component={Projects} />
+          </Switch>
+        </ApolloProvider>
       </Navigation>
     );
   }
