@@ -20,7 +20,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 // import strings from '../localization/game-locale';
 
-import navigationLinks from './navigationLinks';
+import navigationLinks from '../data/navigationLinks';
 
 const drawerWidth = 240;
 
