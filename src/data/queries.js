@@ -27,6 +27,20 @@ const GET_BLOG_POST_INFO = gql`
   }
 `;
 
+const GET_BLOG_POST = gql`
+  query blogPost($url: String!) {
+    blogPost(url: $url) {
+      url
+      headline
+      subheader
+      leadingText
+      post
+      date
+      imageUrl
+    }
+  }
+`;
+
 const GET_PROJECTS = gql`
   query {
     projects {
@@ -39,4 +53,4 @@ const GET_PROJECTS = gql`
   }
 `;
 
-export { GET_BLOG_POSTS, GET_BLOG_POST_INFO, GET_PROJECTS };
+export { GET_BLOG_POSTS, GET_BLOG_POST_INFO, GET_BLOG_POST, GET_PROJECTS };
