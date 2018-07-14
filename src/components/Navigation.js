@@ -12,7 +12,6 @@ import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
@@ -20,7 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 // import strings from '../localization/game-locale';
 
-import navigationLinks from '../data/navigationLinks';
+import navigationList from '../data/navigationList';
 
 const drawerWidth = 240;
 
@@ -35,20 +34,25 @@ const styles = theme => ({
   },
   appBar: {
     marginLeft: drawerWidth,
-    position: 'absolute',
+    position: 'fixed',
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
   },
   content: {
-    backgroundColor: theme.palette.background.default,
-    flexGrow: 1,
     padding: theme.spacing.unit * 3,
+    overflow: 'auto',
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.background.default,
+      marginLeft: drawerWidth,
+      height: `calc(100% - ${theme.spacing.unit * 14}px)`,
+      width: `calc(100% - ${theme.spacing.unit * 6}px - ${drawerWidth}px)`,
+    },
   },
   drawerPaper: {
     width: drawerWidth,
     [theme.breakpoints.up('md')]: {
-      position: 'relative',
+      position: 'fixed',
     },
   },
   navIconHide: {
@@ -105,7 +109,7 @@ class Navigation extends Component {
           </Grid>
         </Grid>
         <Divider />
-        <List>{navigationLinks}</List>
+        {navigationList}
       </div>
     );
 
@@ -154,9 +158,9 @@ class Navigation extends Component {
             {drawer}
           </Drawer>
         </Hidden>
-        <main className={classes.content}>
+        <main>
           <div className={classes.toolbar} />
-          {this.props.children}
+          <div className={classes.content}>{this.props.children}</div>
         </main>
       </div>
     );
