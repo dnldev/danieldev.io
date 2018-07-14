@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
+import Blog from './Blog/Blog';
 import Home from './Home/Home';
 import Projects from './Projects/Projects';
 
@@ -23,6 +24,7 @@ class AppContent extends Component {
         <ApolloProvider client={client}>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/blog" component={Blog} />
             <Route path="/projects" component={Projects} />
           </Switch>
         </ApolloProvider>
