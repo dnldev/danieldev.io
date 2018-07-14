@@ -45,8 +45,8 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.background.default,
       marginLeft: drawerWidth,
-      height: `calc(100% - ${theme.spacing.unit * 14}px)`,
-      width: `calc(100% - ${theme.spacing.unit * 6}px - ${drawerWidth}px)`,
+      minHeight: `calc(100vh - ${theme.spacing.unit * 14}px)`,
+      width: `calc(100vw - ${theme.spacing.unit * 6}px - ${drawerWidth}px)`,
     },
   },
   drawerPaper: {
@@ -68,11 +68,20 @@ class Navigation extends Component {
     mobileOpen: false,
   };
 
+  getLastPathPart = path => {
+    if (path.slice(-1) === '/') {
+      path = path.slice(0, -1);
+    }
+    const pathParts = path.split('/');
+
+    return pathParts[pathParts.length - 1];
+  };
+
   getParsedLocation = () => {
     if (this.props.location.pathname === '/') {
       return 'Home';
     } else {
-      const pathName = this.props.location.pathname.replace('/', '');
+      const pathName = this.getLastPathPart(this.props.location.pathname);
       return this.titleCase(pathName);
     }
   };
@@ -80,6 +89,10 @@ class Navigation extends Component {
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
+
+  removeAll(string, char) {
+    return string.split(char).join('');
+  }
 
   titleCase(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
