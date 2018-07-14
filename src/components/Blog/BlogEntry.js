@@ -34,7 +34,7 @@ const styles = theme => ({
   },
 });
 
-class BlogEntryPreview extends Component {
+class BlogEntry extends Component {
   render() {
     const {
       classes,
@@ -42,9 +42,17 @@ class BlogEntryPreview extends Component {
       headline,
       imageUrl,
       leadingText,
+      post,
+      preview,
       subheader,
       url,
     } = this.props;
+
+    const imageContainer = (
+      <div className={classes.imageContainer}>
+        <img className={classes.image} src={imageUrl} alt={url + ' image'} />
+      </div>
+    );
 
     return (
       <div className={classes.root}>
@@ -53,26 +61,28 @@ class BlogEntryPreview extends Component {
         <Typography className={classes.subheader} variant="caption">
           {'"' + subheader + '"'}
         </Typography>
-        <Link className={classes.clickArea} to={'/blog/' + url}>
-          {imageUrl && (
-            <div className={classes.imageContainer}>
-              <img
-                className={classes.image}
-                src={imageUrl}
-                alt={url + ' image'}
-              />
-            </div>
-          )}
-          <Typography variant="body1" gutterBottom>
-            {leadingText}...
-          </Typography>
-        </Link>
+        {preview && (
+          <Link className={classes.clickArea} to={'/blog/' + url}>
+            {imageUrl && imageContainer}
+            <Typography variant="body1" gutterBottom>
+              {leadingText}...
+            </Typography>
+          </Link>
+        )}
+        {!preview && (
+          <React.Fragment>
+            {imageUrl && imageContainer}
+            <Typography variant="body1" gutterBottom>
+              {post}
+            </Typography>
+          </React.Fragment>
+        )}
       </div>
     );
   }
 }
 
-BlogEntryPreview.propTypes = {
+BlogEntry.propTypes = {
   classes: PropTypes.object.isRequired,
   date: PropTypes.string.isRequired,
   headline: PropTypes.string.isRequired,
@@ -81,8 +91,14 @@ BlogEntryPreview.propTypes = {
   }),
   imageUrl: PropTypes.string,
   leadingText: PropTypes.string.isRequired,
+  post: PropTypes.string,
+  preview: PropTypes.bool,
   subheader: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(BlogEntryPreview);
+BlogEntry.defaultProps = {
+  preview: false,
+};
+
+export default withStyles(styles)(BlogEntry);
