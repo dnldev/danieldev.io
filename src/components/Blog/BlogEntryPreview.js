@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -11,8 +11,10 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
-    cursor: 'pointer',
     marginBottom: theme.spacing.unit * 4,
+  },
+  clickArea: {
+    textDecoration: 'none !important',
   },
   image: {
     filter: 'blur(1px)',
@@ -38,7 +40,6 @@ class BlogEntryPreview extends Component {
       classes,
       date,
       headline,
-      history,
       imageUrl,
       leadingText,
       subheader,
@@ -46,29 +47,26 @@ class BlogEntryPreview extends Component {
     } = this.props;
 
     return (
-      <div
-        className={classes.root}
-        onClick={() => {
-          history.push('/blog/' + url);
-        }}
-      >
+      <div className={classes.root}>
         <Typography variant="headline">{headline}</Typography>
         <Typography variant="caption">{date}</Typography>
         <Typography className={classes.subheader} variant="caption">
           {'"' + subheader + '"'}
         </Typography>
-        {imageUrl && (
-          <div className={classes.imageContainer}>
-            <img
-              className={classes.image}
-              src={imageUrl}
-              alt={url + ' image'}
-            />
-          </div>
-        )}
-        <Typography variant="body1" gutterBottom>
-          {leadingText}...
-        </Typography>
+        <Link className={classes.clickArea} to={'/blog/' + url}>
+          {imageUrl && (
+            <div className={classes.imageContainer}>
+              <img
+                className={classes.image}
+                src={imageUrl}
+                alt={url + ' image'}
+              />
+            </div>
+          )}
+          <Typography variant="body1" gutterBottom>
+            {leadingText}...
+          </Typography>
+        </Link>
       </div>
     );
   }
@@ -87,4 +85,4 @@ BlogEntryPreview.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(withRouter(BlogEntryPreview));
+export default withStyles(styles)(BlogEntryPreview);
