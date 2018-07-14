@@ -5,9 +5,10 @@ import { Switch, Route } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
-import Blog from './Blog/Blog';
+import BlogEntryProvider from './Blog/BlogEntryProvider';
+import BlogPreviewProvider from './Blog/BlogPreviewProvider';
 import Home from './Home/Home';
-import Projects from './Projects/Projects';
+import ProjectProvider from './Projects/ProjectProvider';
 
 // import strings from '../localization/game-locale';
 
@@ -24,8 +25,9 @@ class AppContent extends Component {
         <ApolloProvider client={client}>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/blog" component={Blog} />
-            <Route path="/projects" component={Projects} />
+            <Route exact path="/blog" component={BlogPreviewProvider} />
+            <Route path="/blog/:url" component={BlogEntryProvider} />
+            <Route path="/projects" component={ProjectProvider} />
           </Switch>
         </ApolloProvider>
       </Navigation>
