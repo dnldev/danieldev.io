@@ -32,12 +32,7 @@ class Projects extends Component {
               <div>
                 {data.projects.map(project => (
                   <Grid item key={project.url} xs={12}>
-                    <Project
-                      description={project.shortDescription}
-                      image={'http://danieldev.io/' + project.imageUrl}
-                      name={project.title}
-                      url={project.url}
-                    />
+                    <Project {...project} />
                   </Grid>
                 ))}
               </div>

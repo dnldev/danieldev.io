@@ -31,19 +31,19 @@ const styles = theme => ({
 
 class Project extends Component {
   render() {
-    const { classes, description, image, name } = this.props;
+    const { classes, shortDescription, imageUrl, title } = this.props;
 
     return (
       <Paper className={classes.root}>
         <div className={classes.imageArea}>
-          <img className={classes.image} alt={name} src={image} />
+          <img className={classes.image} alt={title} src={imageUrl} />
         </div>
         <div className={classes.contentArea}>
           <Typography className={classes.title} variant="headline" gutterBottom>
-            {name}
+            {title}
           </Typography>
           <Typography className={classes.description} gutterBottom>
-            {description}
+            {shortDescription}
           </Typography>
         </div>
       </Paper>
@@ -53,9 +53,9 @@ class Project extends Component {
 
 Project.propTypes = {
   classes: PropTypes.object.isRequired,
-  description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  shortDescription: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
 
