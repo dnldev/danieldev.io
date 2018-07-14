@@ -5,8 +5,8 @@ import { Switch, Route } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
-import Home from './pages/Home';
-import Projects from './pages/Projects';
+import Home from './Home/Home';
+import Projects from './Projects/Projects';
 
 // import strings from '../localization/game-locale';
 
