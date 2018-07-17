@@ -42,11 +42,14 @@ const styles = theme => ({
   content: {
     padding: theme.spacing.unit * 3,
     overflow: 'auto',
+    width: `calc(100vw - ${theme.spacing.unit * 6}px)`,
     [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.background.default,
       marginLeft: drawerWidth,
       minHeight: `calc(100vh - ${theme.spacing.unit * 14}px)`,
-      width: `calc(100vw - ${theme.spacing.unit * 6}px - ${drawerWidth}px)`,
+      paddingLeft: theme.spacing.unit * 12,
+      paddingRight: theme.spacing.unit * 20,
+      width: `calc(100vw - ${theme.spacing.unit * 32}px - ${drawerWidth}px)`,
     },
   },
   drawerPaper: {
