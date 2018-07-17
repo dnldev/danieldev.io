@@ -59,7 +59,9 @@ class BlogEntry extends Component {
 
     return (
       <div className={classes.root}>
-        <Typography variant="display1">{headline}</Typography>
+        <Typography variant={preview ? 'headline' : 'display1'}>
+          {headline}
+        </Typography>
         <Typography variant="caption">{date}</Typography>
         <Typography className={classes.subheader} variant="caption">
           {'"' + subheader + '"'}
