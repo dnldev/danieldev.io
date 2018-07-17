@@ -7,6 +7,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Typography from '@material-ui/core/Typography';
 
+import ReactMarkdown from 'react-markdown';
+import { renderers } from '../renderers';
+
 // import strings from '../localization/game-locale';
 
 const styles = theme => ({
@@ -56,7 +59,9 @@ class BlogEntry extends Component {
 
     return (
       <div className={classes.root}>
-        <Typography variant="headline">{headline}</Typography>
+        <Typography variant={preview ? 'headline' : 'display1'}>
+          {headline}
+        </Typography>
         <Typography variant="caption">{date}</Typography>
         <Typography className={classes.subheader} variant="caption">
           {'"' + subheader + '"'}
@@ -72,9 +77,7 @@ class BlogEntry extends Component {
         {!preview && (
           <React.Fragment>
             {imageUrl && imageContainer}
-            <Typography variant="body1" gutterBottom>
-              {post}
-            </Typography>
+            <ReactMarkdown source={post} renderers={renderers} />
           </React.Fragment>
         )}
       </div>
