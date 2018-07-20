@@ -1,14 +1,35 @@
 import gql from 'graphql-tag';
 
-const ADD_POST = gql`
-  mutation {
-    addPost(post: { url: $url, title: $title, date: $date, post: $post }) {
+const ADD_BLOG_POST = gql`
+  mutation(
+    $url: String!
+    $headline: String!
+    $subheader: String!
+    $leadingText: String!
+    $post: String!
+    $date: Date
+    $imageUrl: String
+  ) {
+    addBlogPost(
+      blogPost: {
+        url: $url
+        headline: $headline
+        subheader: $subheader
+        leadingText: $leadingText
+        post: $post
+        date: $date
+        imageUrl: $imageUrl
+      }
+    ) {
       url
-      title
-      date
+      headline
+      subheader
+      leadingText
       post
+      date
+      imageUrl
     }
   }
 `;
 
-export { ADD_POST };
+export { ADD_BLOG_POST };
