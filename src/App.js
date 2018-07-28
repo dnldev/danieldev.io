@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import 'typeface-roboto';
+import 'typeface-open-sans';
+
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core';
 
