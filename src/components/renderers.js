@@ -40,7 +40,9 @@ const Link = props => (
       color: '#4c91ff',
       textDecoration: 'none',
     }}
+    rel="noopener noreferrer"
     href={props.href}
+    target="_blank"
   >
     {props.children}
   </a>
