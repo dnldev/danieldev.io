@@ -15,13 +15,12 @@ import TextField from '@material-ui/core/TextField';
 
 import SendIcon from '@material-ui/icons/Send';
 
+import NewEntry from './NewEntry';
+
 // import strings from '../localization/game-locale';
 
-const styles = theme => ({
+const styles = () => ({
   root: {},
-  sendIcon: {
-    marginLeft: theme.spacing.unit,
-  },
   textField: {
     width: '100%',
   },
@@ -49,6 +48,8 @@ class AdminArea extends Component {
 
   handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
+
+  loggedOut = () => this.setState({ loggedIn: false });
 
   render() {
     const { classes } = this.props;
@@ -80,29 +81,10 @@ class AdminArea extends Component {
           <ApolloProvider client={this.client}>
             <Mutation mutation={ADD_BLOG_POST}>
               {addBlogPost => (
-                <div>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() =>
-                      addBlogPost({
-                        variables: {
-                          url: 'test3',
-                          headline: 'Test Post',
-                          subheader: 'this is a test post',
-                          leadingText: 'my first test post',
-                          post: 'hello, this is a test post',
-                        },
-                      }).catch(err => {
-                        alert('Session Ended, Log-in again!');
-                        this.setState({ loggedIn: false });
-                      })
-                    }
-                  >
-                    Submit
-                    <SendIcon className={classes.sendIcon} />
-                  </Button>
-                </div>
+                <NewEntry
+                  addBlogPost={addBlogPost}
+                  loggedOut={this.loggedOut}
+                />
               )}
             </Mutation>
           </ApolloProvider>
